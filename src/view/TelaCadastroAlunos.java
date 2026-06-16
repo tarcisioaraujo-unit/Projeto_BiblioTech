@@ -66,7 +66,7 @@ public class TelaCadastroAlunos extends JFrame {
                 menu,
                 BoxLayout.Y_AXIS));
 
-        menu.setBackground(Color.WHITE);
+        menu.setBackground(new Color(243, 243, 248));
 
         menu.add(Box.createVerticalStrut(20));
 
@@ -171,7 +171,7 @@ public class TelaCadastroAlunos extends JFrame {
 
         } else {
 
-            botao.setBackground(Color.WHITE);
+            botao.setBackground(new Color(243, 243, 248));
 
         }
 
@@ -196,7 +196,7 @@ public class TelaCadastroAlunos extends JFrame {
                         if (!selecionado) {
 
                             botao.setBackground(
-                                    Color.WHITE);
+                                    new Color(243, 243, 248));
                         }
                     }
                 });
@@ -278,7 +278,7 @@ public class TelaCadastroAlunos extends JFrame {
                         20,
                         10));
 
-        painel.setBackground(Color.WHITE);
+        painel.setBackground(new Color(243, 243, 248));
 
         painel.setBorder(
                 BorderFactory.createTitledBorder(
@@ -313,7 +313,7 @@ public class TelaCadastroAlunos extends JFrame {
                         20,
                         10));
 
-        painel.setBackground(Color.WHITE);
+        painel.setBackground(new Color(243, 243, 248));
 
         painel.setBorder(
                 BorderFactory.createTitledBorder(
@@ -447,7 +447,7 @@ public class TelaCadastroAlunos extends JFrame {
                         Font.BOLD,
                         16));
 
-        botao.setBackground(Color.WHITE);
+        botao.setBackground(new Color(243, 243, 248));
 
         botao.setForeground(Color.BLACK);
 
@@ -477,7 +477,7 @@ public class TelaCadastroAlunos extends JFrame {
                             java.awt.event.MouseEvent evt) {
 
                         botao.setBackground(
-                                Color.WHITE);
+                                new Color(243, 243, 248));
                     }
                 });
 

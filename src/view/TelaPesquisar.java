@@ -57,7 +57,7 @@ public class TelaPesquisar extends JFrame {
                 menu,
                 BoxLayout.Y_AXIS));
 
-        menu.setBackground(Color.WHITE);
+        menu.setBackground(new Color(243, 243, 248));
 
         menu.add(Box.createVerticalStrut(20));
 
@@ -162,7 +162,7 @@ public class TelaPesquisar extends JFrame {
 
         } else {
 
-            botao.setBackground(Color.WHITE);
+            botao.setBackground(new Color(243, 243, 248));
 
         }
 
@@ -187,7 +187,7 @@ public class TelaPesquisar extends JFrame {
                         if (!selecionado) {
 
                             botao.setBackground(
-                                    Color.WHITE);
+                                    new Color(243, 243, 248));
                         }
                     }
                 });
@@ -288,7 +288,7 @@ public class TelaPesquisar extends JFrame {
 
                         // Fundo branco
 
-                        g2.setColor(Color.WHITE);
+                        g2.setColor(new Color(243, 243, 248));
 
                         g2.fillRoundRect(
                                 0,
@@ -344,7 +344,7 @@ public class TelaPesquisar extends JFrame {
         txtPesquisa.setOpaque(false);
 
         txtPesquisa.setBackground(
-                Color.WHITE);
+                new Color(243, 243, 248));
 
         txtPesquisa.setForeground(
                 Color.GRAY);
@@ -416,8 +416,8 @@ public class TelaPesquisar extends JFrame {
                                 AlphaComposite.SRC_OVER,
                                 0.10f));
 
-                int largura = 650;
-                int altura = 650;
+                int largura = 360;
+                int altura = 120;
 
                 int x =
                         (getWidth() - largura) / 2;

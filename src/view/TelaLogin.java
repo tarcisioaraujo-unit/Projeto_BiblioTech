@@ -49,11 +49,10 @@ public class TelaLogin extends JFrame {
                         20,
                         20));
 
-        painelPrincipal.setBackground(Color.WHITE);
+        painelPrincipal.setBackground(new Color(243, 243, 248));
 
-        //----------------------------------
+
         // LOGO
-        //----------------------------------
 
         JLabel lblLogo;
 
@@ -66,7 +65,7 @@ public class TelaLogin extends JFrame {
             Image img =
                     icon.getImage()
                             .getScaledInstance(
-                                    120,
+                                    360,
                                     120,
                                     Image.SCALE_SMOOTH);
 
@@ -85,9 +84,8 @@ public class TelaLogin extends JFrame {
         lblLogo.setAlignmentX(
                 Component.CENTER_ALIGNMENT);
 
-        //----------------------------------
+
         // TÍTULO
-        //----------------------------------
 
         JLabel lblTitulo =
                 new JLabel("BiblioTech");
@@ -101,16 +99,15 @@ public class TelaLogin extends JFrame {
         lblTitulo.setAlignmentX(
                 Component.CENTER_ALIGNMENT);
 
-        //----------------------------------
+
         // FORMULÁRIO
-        //----------------------------------
 
         JPanel painelFormulario =
                 new JPanel(
                         new GridBagLayout());
 
         painelFormulario.setBackground(
-                Color.WHITE);
+                new Color(243, 243, 248));
 
         GridBagConstraints gbc =
                 new GridBagConstraints();
@@ -125,9 +122,8 @@ public class TelaLogin extends JFrame {
         gbc.anchor =
                 GridBagConstraints.WEST;
 
-        //----------------------------------
+
         // ID
-        //----------------------------------
 
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -159,9 +155,9 @@ public class TelaLogin extends JFrame {
                 txtId,
                 gbc);
 
-        //----------------------------------
+
         // SENHA
-        //----------------------------------
+
 
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -193,9 +189,9 @@ public class TelaLogin extends JFrame {
                 txtSenha,
                 gbc);
 
-        //----------------------------------
+
         // BOTÕES
-        //----------------------------------
+
 
         JPanel painelBotoes =
                 new JPanel(
@@ -205,7 +201,7 @@ public class TelaLogin extends JFrame {
                                 0));
 
         painelBotoes.setBackground(
-                Color.WHITE);
+                new Color(243, 243, 248));
 
         btnEntrar =
                 new JButton("Entrar");
@@ -222,21 +218,20 @@ public class TelaLogin extends JFrame {
                         255));
 
         btnEntrar.setForeground(
-                Color.WHITE);
+                new Color(243, 243, 248));
 
         btnEntrar.setFocusPainted(
                 false);
 
-        //----------------------------------
+
         // EVENTO ENTRAR
-        //----------------------------------
+
 
         btnEntrar.addActionListener(
                 e -> realizarLogin());
 
-        //----------------------------------
+
         // BOTÃO LIMPAR
-        //----------------------------------
 
         btnLimpar =
                 new JButton("Limpar");
@@ -260,9 +255,9 @@ public class TelaLogin extends JFrame {
 
                 });
 
-        //----------------------------------
+
         // ENTER NA SENHA
-        //----------------------------------
+
 
         txtSenha.addActionListener(
                 e -> realizarLogin());
@@ -270,9 +265,8 @@ public class TelaLogin extends JFrame {
         painelBotoes.add(btnEntrar);
         painelBotoes.add(btnLimpar);
 
-        //----------------------------------
+
         // MONTA TELA
-        //----------------------------------
 
         painelPrincipal.add(lblLogo);
 
@@ -297,9 +291,7 @@ public class TelaLogin extends JFrame {
 
     }
 
-    //----------------------------------
     // LOGIN
-    //----------------------------------
 
     private void realizarLogin() {
 

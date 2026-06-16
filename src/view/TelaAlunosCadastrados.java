@@ -465,7 +465,7 @@ public class TelaAlunosCadastrados extends JFrame {
                             java.awt.event.MouseEvent evt) {
 
                         botao.setBackground(
-                                Color.WHITE);
+                                new Color(243, 243, 248));
                     }
                 });
 

@@ -58,7 +58,7 @@ public class TelaPrincipal extends JFrame {
                 menu,
                 BoxLayout.Y_AXIS));
 
-        menu.setBackground(Color.WHITE);
+        menu.setBackground(new Color(243, 243, 248));
 
         menu.add(Box.createVerticalStrut(20));
 
@@ -161,7 +161,7 @@ public class TelaPrincipal extends JFrame {
 
         } else {
 
-            botao.setBackground(Color.WHITE);
+            botao.setBackground(new Color(243, 243, 248));
 
         }
 
@@ -186,7 +186,7 @@ public class TelaPrincipal extends JFrame {
                         if (!selecionado) {
 
                             botao.setBackground(
-                                    Color.WHITE);
+                                    new Color(243, 243, 248));
                         }
                     }
                 });
@@ -216,8 +216,8 @@ public class TelaPrincipal extends JFrame {
                                 AlphaComposite.SRC_OVER,
                                 0.08f));
 
-                int largura = 700;
-                int altura = 700;
+                int largura = 360;
+                int altura = 120;
 
                 int x =
                         (getWidth() - largura) / 2;
@@ -255,7 +255,7 @@ public class TelaPrincipal extends JFrame {
         JPanel card = new JPanel(
                 new BorderLayout());
 
-        card.setBackground(Color.WHITE);
+        card.setBackground(new Color(243, 243, 248));
 
         card.setBorder(
                 new EmptyBorder(
