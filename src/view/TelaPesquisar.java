@@ -3,46 +3,32 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 
+import util.Navegador;
 import view.TelaPesquisar;
 import view.TelaCatalogos;
 import view.TelaLivros;
 import view.TelaAlunos;
 
-public class TelaPesquisar extends JFrame {
+public class TelaPesquisar extends JPanel {
 
     private JTextField txtPesquisa;
 
     public TelaPesquisar() {
 
-        configurarJanela();
+        configurarPainel();
 
     }
 
-    private void configurarJanela() {
+    private void configurarPainel() {
 
-        setTitle("BiblioTech - Pesquisar");
-        setSize(1400, 800);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        //setTitle("BiblioTech - Pesquisar");
+        //setSize(1400, 800);
+        //setLocationRelativeTo(null);
+        //setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
+
         add(criarMenuLateral(), BorderLayout.WEST);
         add(criarPainelCentral(), BorderLayout.CENTER);
-    }
-
-    private void abrirTela(JFrame novaTela) {
-
-        novaTela.setSize(
-                getSize());
-
-        novaTela.setExtendedState(
-                getExtendedState());
-
-        novaTela.setLocation(
-                getLocation());
-
-        novaTela.setVisible(true);
-
-        dispose();
     }
 
 
@@ -53,66 +39,60 @@ public class TelaPesquisar extends JFrame {
 
         menu.setPreferredSize(new Dimension(220, 0));
 
-        menu.setLayout(new BoxLayout(
-                menu,
-                BoxLayout.Y_AXIS));
+        menu.setLayout(new BoxLayout(  menu,   BoxLayout.Y_AXIS));
 
         menu.setBackground(new Color(243, 243, 248));
 
         menu.add(Box.createVerticalStrut(20));
 
         //menu.add(criarBotaoMenu("🏠 Início", true));
-        JButton btnInicio =
-                criarBotaoMenu(
-                        "Início",
-                        false);
+        JButton btnInicio =   criarBotaoMenu(  "\uD83C\uDFE0 Início",false);
+        Box.createVerticalStrut(15);
 
         btnInicio.addActionListener(e ->
-                abrirTela(new TelaPrincipal()));
+                Navegador.mostrar("INICIO"));
         menu.add(btnInicio);
 
         //menu.add(criarBotaoMenu("🔎 Pesquisar", false));
-        JButton btnPesquisar =
-                criarBotaoMenu(
-                        "Pesquisar",
-                        false);
+        JButton btnPesquisar =   criarBotaoMenu(   "\uD83D\uDD0D Pesquisar",  false);
+        Box.createVerticalStrut(15);
 
         btnPesquisar.addActionListener(e ->
-                abrirTela(new TelaPesquisar()));
+                Navegador.mostrar("PESQUISAR"));
 
         menu.add(btnPesquisar);
 
         //menu.add(criarBotaoMenu("📖 Catálogo", false));
-        JButton btnCatalogos =
-                criarBotaoMenu("Catálogo", false);
+        JButton btnCatalogos =                criarBotaoMenu("\uD83D\uDCDA Catálogo", false);
+        Box.createVerticalStrut(15);
 
         btnCatalogos.addActionListener(e ->
-                abrirTela(new TelaCatalogos()));
+                Navegador.mostrar("CATALOGOS"));
 
         menu.add(btnCatalogos);
 
         menu.add(Box.createVerticalStrut(20));
 
         //menu.add(criarBotaoMenu("📚 Livros", false));
-        JButton btnLivros =
-                criarBotaoMenu("Livros", false);
+        JButton btnLivros =   criarBotaoMenu("\uD83D\uDD6E Livros", false);
+        Box.createVerticalStrut(15);
 
         btnLivros.addActionListener(e ->
-                abrirTela(new TelaLivros()));
+                Navegador.mostrar("LIVROS"));
 
         menu.add(btnLivros);
 
         //menu.add(criarBotaoMenu("🎓 Usuários", false));
         JButton btnUsuarios =
-                criarBotaoMenu("Usuários", false);
+                criarBotaoMenu("\uD83C\uDF93 Usuários", false);
+        Box.createVerticalStrut(15);
 
         btnUsuarios.addActionListener(e ->
-                abrirTela(new TelaAlunos()));
+                Navegador.mostrar("ALUNOS"));
 
         menu.add(btnUsuarios);
 
-
-        menu.add(criarBotaoMenu("Relatórios", false));
+        menu.add(criarBotaoMenu("\uD83D\uDCCA Relatórios", false));
 
         menu.add(Box.createVerticalGlue());
 
@@ -150,7 +130,7 @@ public class TelaPesquisar extends JFrame {
                 new Font(
                         "Segoe UI",
                         Font.PLAIN,
-                        18));
+                        24));
 
         if (selecionado) {
 

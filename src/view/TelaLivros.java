@@ -1,9 +1,12 @@
 package view;
+import util.Navegador;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 
-public class TelaLivros extends JFrame {
+public class TelaLivros extends JPanel {
 
     public TelaLivros() {
 
@@ -24,36 +27,14 @@ public class TelaLivros extends JFrame {
     // CONFIGURAÇÃO DA JANELA
     private void configurarJanela() {
 
-        setTitle("BiblioTech - Livros");
 
-        setSize(1400, 800);
-
-        setLocationRelativeTo(null);
-
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         setLayout(new BorderLayout());
 
         add(criarMenuLateral(), BorderLayout.WEST);
-
         add(criarPainelLivros(), BorderLayout.CENTER);
     }
 
-    private void abrirTela(JFrame novaTela) {
-
-        novaTela.setSize(
-                getSize());
-
-        novaTela.setExtendedState(
-                getExtendedState());
-
-        novaTela.setLocation(
-                getLocation());
-
-        novaTela.setVisible(true);
-
-        dispose();
-    }
 
 
     // MENU LATERAL
@@ -74,30 +55,33 @@ public class TelaLivros extends JFrame {
         //menu.add(criarBotaoMenu("🏠 Início", true));
         JButton btnInicio =
                 criarBotaoMenu(
-                        "Início",
+                        "\uD83C\uDFE0 Início",
                         false);
+        Box.createVerticalStrut(15);
 
         btnInicio.addActionListener(e ->
-                abrirTela(new TelaPrincipal()));
+                Navegador.mostrar("INICIO"));
         menu.add(btnInicio);
 
         //menu.add(criarBotaoMenu("🔎 Pesquisar", false));
         JButton btnPesquisar =
                 criarBotaoMenu(
-                        "Pesquisar",
+                        "\uD83D\uDD0D Pesquisar",
                         false);
+        Box.createVerticalStrut(15);
 
         btnPesquisar.addActionListener(e ->
-                abrirTela(new TelaPesquisar()));
+                Navegador.mostrar("PESQUISAR"));
 
         menu.add(btnPesquisar);
 
         //menu.add(criarBotaoMenu("📖 Catálogo", false));
         JButton btnCatalogos =
-                criarBotaoMenu("Catálogo", false);
+                criarBotaoMenu("\uD83D\uDCDA Catálogo", false);
+        Box.createVerticalStrut(15);
 
         btnCatalogos.addActionListener(e ->
-                abrirTela(new TelaCatalogos()));
+                Navegador.mostrar("CATALOGOS"));
 
         menu.add(btnCatalogos);
 
@@ -105,24 +89,26 @@ public class TelaLivros extends JFrame {
 
         //menu.add(criarBotaoMenu("📚 Livros", false));
         JButton btnLivros =
-                criarBotaoMenu("Livros", false);
+                criarBotaoMenu("\uD83D\uDD6E Livros", false);
+        Box.createVerticalStrut(15);
 
         btnLivros.addActionListener(e ->
-                abrirTela(new TelaLivros()));
+                Navegador.mostrar("LIVROS"));
 
         menu.add(btnLivros);
 
         //menu.add(criarBotaoMenu("🎓 Usuários", false));
         JButton btnUsuarios =
-                criarBotaoMenu("Usuários", false);
+                criarBotaoMenu("\uD83C\uDF93 Usuários", false);
+        Box.createVerticalStrut(15);
 
         btnUsuarios.addActionListener(e ->
-                abrirTela(new TelaAlunos()));
+                Navegador.mostrar("ALUNOS"));
 
         menu.add(btnUsuarios);
 
 
-        menu.add(criarBotaoMenu("Relatórios", false));
+        menu.add(criarBotaoMenu("\uD83D\uDCCA Relatórios", false));
 
         menu.add(Box.createVerticalGlue());
 
@@ -160,7 +146,7 @@ public class TelaLivros extends JFrame {
                 new Font(
                         "Segoe UI",
                         Font.PLAIN,
-                        18));
+                        24));
 
         if (selecionado) {
 
@@ -233,7 +219,7 @@ public class TelaLivros extends JFrame {
                         "Cadastrar Livros");
 
         btnAdicionar.addActionListener(e ->
-            abrirTela(new TelaCadastroLivros()));
+                Navegador.mostrar("CADASTRO_LIVROS"));
 
 
         JButton btnEmprestimos =

@@ -1,10 +1,11 @@
 package view;
+import util.Navegador;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class TelaLogin extends JFrame {
+public class TelaLogin extends JPanel {
 
     private JTextField txtId;
     private JPasswordField txtSenha;
@@ -14,24 +15,10 @@ public class TelaLogin extends JFrame {
 
     public TelaLogin() {
 
-        configurarJanela();
         criarTela();
 
     }
 
-    private void configurarJanela() {
-
-        setTitle("BiblioTech - Login");
-
-        setSize(420, 450);
-
-        setResizable(false);
-
-        setLocationRelativeTo(null);
-
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-    }
 
     private void criarTela() {
 
@@ -226,13 +213,11 @@ public class TelaLogin extends JFrame {
 
         // EVENTO ENTRAR
 
-
         btnEntrar.addActionListener(
                 e -> realizarLogin());
 
 
         // BOTÃO LIMPAR
-
         btnLimpar =
                 new JButton("Limpar");
 
@@ -287,7 +272,26 @@ public class TelaLogin extends JFrame {
         painelPrincipal.add(
                 painelBotoes);
 
-        add(painelPrincipal);
+// CENTRALIZA NA TELA
+
+        setBackground(
+                new Color(
+                        243,
+                        243,
+                        248));
+
+        setLayout(
+                new GridBagLayout());
+
+        GridBagConstraints gbcCentral =
+                new GridBagConstraints();
+
+        gbcCentral.gridx = 0;
+        gbcCentral.gridy = 0;
+
+        add(
+                painelPrincipal,
+                gbcCentral);
 
     }
 
@@ -296,27 +300,22 @@ public class TelaLogin extends JFrame {
     private void realizarLogin() {
 
         String id =
-                txtId.getText()
-                        .trim();
+                txtId.getText().trim();
 
         String senha =
                 String.valueOf(
                         txtSenha.getPassword());
 
-        if(id.equals("admin")
+        if (id.equals("admin")
                 && senha.equals("123")) {
 
             JOptionPane.showMessageDialog(
                     this,
                     "Login realizado com sucesso!");
 
-            dispose();
+            Navegador.mostrar("INICIO");
 
-            new TelaPrincipal()
-                    .setVisible(true);
-
-        }
-        else {
+        } else {
 
             JOptionPane.showMessageDialog(
                     this,
@@ -329,7 +328,6 @@ public class TelaLogin extends JFrame {
             txtSenha.requestFocus();
 
         }
-
     }
 
 }
