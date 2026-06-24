@@ -2,13 +2,11 @@ package view;
 import util.Navegador;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 
-public class TelaLivros extends JPanel {
+public class TelaEmprestimos extends JPanel {
 
-    public TelaLivros() {
+    public TelaEmprestimos() {
 
         try {
 
@@ -213,29 +211,18 @@ public class TelaLivros extends JPanel {
 
         painelBotoes.setOpaque(false);
 
-        JButton btnAdicionar =
+        JButton btnNovosEmprestimos =
                 criarBotaoPrincipal(
-                        "Cadastrar Livros");
+                        "Novos Emprestimos");
 
-        btnAdicionar.addActionListener(e ->
-                Navegador.mostrar("CADASTRO_LIVROS"));
 
-        JButton btnListarLivos =
+        JButton btnListarEmprestimos =
                 criarBotaoPrincipal(
-                        "Listar Livros");
+                        "Listar Empréstimos");
 
 
-        JButton btnEmprestimos =
-                criarBotaoPrincipal(
-                        "Empréstimos");
-
-        btnEmprestimos.addActionListener(e ->
-                Navegador.mostrar("EMPRESTIMOS"));
-
-
-        painelBotoes.add(btnAdicionar);
-        painelBotoes.add(btnListarLivos);
-        painelBotoes.add(btnEmprestimos);
+        painelBotoes.add(btnNovosEmprestimos);
+        painelBotoes.add(btnListarEmprestimos);
 
         painel.add(
                 painelBotoes,

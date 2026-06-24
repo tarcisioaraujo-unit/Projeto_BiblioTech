@@ -74,6 +74,10 @@ public class JanelaPrincipal extends JFrame {
                 new TelaCadastroLivros(),
                 "CADASTRO_LIVROS");
 
+        painelCentral.add(
+                new TelaEmprestimos(),
+                "EMPRESTIMOS");
+
 
         // ADICIONA AO FRAME
 
