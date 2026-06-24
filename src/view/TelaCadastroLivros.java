@@ -1,13 +1,19 @@
 package view;
+
+import model.Livro;
+import model.RepositorioLivros;
 import util.Navegador;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-
+import java.util.HashMap;
+import java.util.Map;
 
 public class TelaCadastroLivros extends JPanel {
+
+    private final Map<String, JTextField> campos =
+            new HashMap<>();
 
     public TelaCadastroLivros() {
 
@@ -340,6 +346,8 @@ public class TelaCadastroLivros extends JPanel {
         campo.setAlignmentX(
                 Component.LEFT_ALIGNMENT);
 
+        campos.put(titulo, campo);
+
         painel.add(label);
         painel.add(Box.createVerticalStrut(3));
         painel.add(campo);
@@ -367,10 +375,100 @@ public class TelaCadastroLivros extends JPanel {
                 criarBotaoPrincipal(
                         "Limpar");
 
+        btnCadastrar.addActionListener(e ->
+                cadastrarLivro());
+
+        btnLimpar.addActionListener(e ->
+                limparCampos());
+
         painel.add(btnCadastrar);
         painel.add(btnLimpar);
 
         return painel;
+    }
+
+    private void cadastrarLivro() {
+
+        String id = campos.get("ID").getText().trim();
+        String titulo = campos.get("Título").getText().trim();
+        String autor = campos.get("Autor").getText().trim();
+        String ano = campos.get("Ano").getText().trim();
+        String quantidadeTexto = campos.get("Quantidade").getText().trim();
+
+        if (id.isEmpty()
+                || titulo.isEmpty()
+                || autor.isEmpty()
+                || ano.isEmpty()
+                || quantidadeTexto.isEmpty()) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Preencha ID, Título, Autor, Ano e Quantidade.",
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+
+            return;
+        }
+
+        int quantidade;
+
+        try {
+            quantidade = Integer.parseInt(quantidadeTexto);
+        } catch (NumberFormatException e) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Informe uma quantidade válida.",
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+
+            return;
+        }
+
+        if (quantidade <= 0) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "A quantidade deve ser maior que zero.",
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+
+            return;
+        }
+
+        if (RepositorioLivros.buscarPorId(id) != null) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Já existe um livro cadastrado com este ID.",
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+
+            return;
+        }
+
+        RepositorioLivros.adicionar(
+                new Livro(
+                        id,
+                        titulo,
+                        autor,
+                        ano,
+                        quantidade));
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Livro cadastrado com sucesso!",
+                "Sucesso",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        limparCampos();
+    }
+
+    private void limparCampos() {
+
+        for (JTextField campo : campos.values()) {
+            campo.setText("");
+        }
     }
 
 

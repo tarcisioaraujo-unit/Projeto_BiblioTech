@@ -78,6 +78,10 @@ public class JanelaPrincipal extends JFrame {
                 new TelaEmprestimos(),
                 "EMPRESTIMOS");
 
+        painelCentral.add(
+                new TelaNovoEmprestimo(),
+                "NOVO_EMPRESTIMO");
+
 
         // ADICIONA AO FRAME
 

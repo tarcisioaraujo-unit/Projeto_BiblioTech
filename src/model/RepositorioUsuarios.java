@@ -16,4 +16,16 @@ public class RepositorioUsuarios {
     public static List<Usuario> listar() {
         return Collections.unmodifiableList(usuarios);
     }
+
+    public static Usuario buscarPorId(String id) {
+
+        for (Usuario usuario : usuarios) {
+
+            if (usuario.getId().equals(id)) {
+                return usuario;
+            }
+        }
+
+        return null;
+    }
 }

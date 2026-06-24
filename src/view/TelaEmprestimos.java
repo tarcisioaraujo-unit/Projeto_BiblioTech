@@ -213,16 +213,23 @@ public class TelaEmprestimos extends JPanel {
 
         JButton btnNovosEmprestimos =
                 criarBotaoPrincipal(
-                        "Novos Emprestimos");
+                        "Novos Empréstimos");
 
+        btnNovosEmprestimos.addActionListener(e ->
+                Navegador.mostrar("NOVO_EMPRESTIMO"));
 
         JButton btnListarEmprestimos =
                 criarBotaoPrincipal(
                         "Listar Empréstimos");
 
+        JButton btnRegistrarDevolucao =
+                criarBotaoPrincipal(
+                        "Registrar Devolução");
+
 
         painelBotoes.add(btnNovosEmprestimos);
         painelBotoes.add(btnListarEmprestimos);
+        painelBotoes.add(btnRegistrarDevolucao);
 
         painel.add(
                 painelBotoes,
