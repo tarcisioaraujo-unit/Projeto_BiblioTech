@@ -1,12 +1,19 @@
 package view;
+
+import model.RepositorioUsuarios;
+import model.Usuario;
 import util.Navegador;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TelaCadastroAlunos extends JPanel {
+
+    private final Map<String, JTextField> campos =
+            new HashMap<>();
 
     public TelaCadastroAlunos() {
 
@@ -380,6 +387,8 @@ public class TelaCadastroAlunos extends JPanel {
         campo.setAlignmentX(
                 Component.LEFT_ALIGNMENT);
 
+        campos.put(titulo, campo);
+
         painel.add(label);
         painel.add(Box.createVerticalStrut(3));
         painel.add(campo);
@@ -407,10 +416,63 @@ public class TelaCadastroAlunos extends JPanel {
                 criarBotaoPrincipal(
                         "Limpar");
 
+        btnCadastrar.addActionListener(e ->
+                cadastrarUsuario());
+
+        btnLimpar.addActionListener(e ->
+                limparCampos());
+
         painel.add(btnCadastrar);
         painel.add(btnLimpar);
 
         return painel;
+    }
+
+    private void cadastrarUsuario() {
+
+        String id = campos.get("ID").getText().trim();
+        String nome = campos.get("Nome").getText().trim();
+        String telefone = campos.get("Telefone").getText().trim();
+        String email = campos.get("E-mail").getText().trim();
+        String cpf = campos.get("CPF").getText().trim();
+
+        if (id.isEmpty()
+                || nome.isEmpty()
+                || telefone.isEmpty()
+                || email.isEmpty()
+                || cpf.isEmpty()) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Preencha ID, Nome, Telefone, E-mail e CPF.",
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+
+            return;
+        }
+
+        RepositorioUsuarios.adicionar(
+                new Usuario(
+                        id,
+                        nome,
+                        telefone,
+                        email,
+                        cpf));
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Usuário cadastrado com sucesso!",
+                "Sucesso",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        limparCampos();
+    }
+
+    private void limparCampos() {
+
+        for (JTextField campo : campos.values()) {
+            campo.setText("");
+        }
     }
 
 

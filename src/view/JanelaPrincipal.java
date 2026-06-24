@@ -12,37 +12,31 @@ public class JanelaPrincipal extends JFrame {
 
     public JanelaPrincipal() {
 
-        //--------------------------------------------------
+
         // CONFIGURAÇÃO DA JANELA
-        //--------------------------------------------------
 
         setTitle("BiblioTech");
 
         setSize(1400, 800);
-
         setLocationRelativeTo(null);
-
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        //--------------------------------------------------
+
         // CARDLAYOUT
-        //--------------------------------------------------
 
         cardLayout = new CardLayout();
 
         painelCentral = new JPanel(cardLayout);
 
-        //--------------------------------------------------
+
         // CONFIGURA NAVEGADOR
-        //--------------------------------------------------
 
         Navegador.configurar(
                 cardLayout,
                 painelCentral);
 
-        //--------------------------------------------------
+
         // ADICIONA AS TELAS
-        //--------------------------------------------------
 
         painelCentral.add(
                 new TelaLogin(),
@@ -80,23 +74,20 @@ public class JanelaPrincipal extends JFrame {
                 new TelaCadastroLivros(),
                 "CADASTRO_LIVROS");
 
-        //--------------------------------------------------
+
         // ADICIONA AO FRAME
-        //--------------------------------------------------
 
         add(painelCentral);
 
-        //--------------------------------------------------
         // TELA INICIAL
-        //--------------------------------------------------
+
 
         cardLayout.show(
                 painelCentral,
                 "LOGIN");
 
-        //--------------------------------------------------
+
         // EXIBE A JANELA
-        //--------------------------------------------------
 
         setVisible(true);
     }

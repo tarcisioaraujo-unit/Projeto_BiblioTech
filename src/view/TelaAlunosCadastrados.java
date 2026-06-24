@@ -1,16 +1,27 @@
 package view;
+
+import model.RepositorioUsuarios;
+import model.Usuario;
 import util.Navegador;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
-
-
-import javax.swing.*;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class TelaAlunosCadastrados extends JPanel {
+
+    private static final String[] COLUNAS_TABELA = {
+            "ID",
+            "Nome",
+            "Telefone",
+            "E-mail",
+            "CPF"
+    };
+
+    private DefaultTableModel modeloTabela;
 
     public TelaAlunosCadastrados() {
 
@@ -23,6 +34,21 @@ public class TelaAlunosCadastrados extends JPanel {
         }
 
         configurarJanela();
+
+        addAncestorListener(new AncestorListener() {
+            @Override
+            public void ancestorAdded(AncestorEvent event) {
+                atualizarTabela();
+            }
+
+            @Override
+            public void ancestorRemoved(AncestorEvent event) {
+            }
+
+            @Override
+            public void ancestorMoved(AncestorEvent event) {
+            }
+        });
     }
 
 
@@ -256,15 +282,10 @@ public class TelaAlunosCadastrados extends JPanel {
     }
 
 
-    // INFORMAÇÕES DO USUÁRIO
+    // TABELA DE USUÁRIOS
     private JPanel criarPainelInformacoes() {
 
-        JPanel painel = new JPanel(
-                new GridLayout(
-                        2,
-                        5,
-                        20,
-                        10));
+        JPanel painel = new JPanel(new BorderLayout());
 
         painel.setBackground(Color.WHITE);
 
@@ -281,27 +302,40 @@ public class TelaAlunosCadastrados extends JPanel {
                                 Font.BOLD,
                                 16)));
 
-        JTextArea areaUsuarios =
-                new JTextArea();
+        modeloTabela = new DefaultTableModel(
+                COLUNAS_TABELA,
+                0) {
 
-        areaUsuarios.setEditable(false);
+            @Override
+            public boolean isCellEditable(
+                    int row,
+                    int column) {
 
-        areaUsuarios.setFont(
+                return false;
+            }
+        };
+
+        JTable tabelaUsuarios = new JTable(modeloTabela);
+
+        tabelaUsuarios.setFont(
                 new Font(
                         "Segoe UI",
                         Font.PLAIN,
                         14));
 
-        JScrollPane scroll =
-                new JScrollPane(
-                        areaUsuarios);
+        tabelaUsuarios.getTableHeader().setFont(
+                new Font(
+                        "Segoe UI",
+                        Font.BOLD,
+                        14));
 
-        painel.setLayout(
-                new BorderLayout());
+        tabelaUsuarios.setRowHeight(28);
 
-        painel.add(
-                scroll,
-                BorderLayout.CENTER);
+        tabelaUsuarios.setFillsViewportHeight(true);
+
+        JScrollPane scroll = new JScrollPane(tabelaUsuarios);
+
+        painel.add(scroll, BorderLayout.CENTER);
 
         painel.setPreferredSize(
                 new Dimension(
@@ -313,7 +347,29 @@ public class TelaAlunosCadastrados extends JPanel {
                         Integer.MAX_VALUE,
                         450));
 
+        atualizarTabela();
+
         return painel;
+    }
+
+    private void atualizarTabela() {
+
+        if (modeloTabela == null) {
+            return;
+        }
+
+        modeloTabela.setRowCount(0);
+
+        for (Usuario usuario : RepositorioUsuarios.listar()) {
+
+            modeloTabela.addRow(new Object[]{
+                    usuario.getId(),
+                    usuario.getNome(),
+                    usuario.getTelefone(),
+                    usuario.getEmail(),
+                    usuario.getCpf()
+            });
+        }
     }
 
 
@@ -393,6 +449,13 @@ public class TelaAlunosCadastrados extends JPanel {
                 criarBotaoPrincipal(
                         "Cadastrar");
 
+        btnCadastrar.addActionListener(e ->
+                Navegador.mostrar("CADASTRO_ALUNOS"));
+
+        JButton btnAlterar =
+                criarBotaoPrincipal(
+                        "Alterar");
+
         JButton btnVoltar =
                 criarBotaoPrincipal(
                         "Voltar");
@@ -401,6 +464,7 @@ public class TelaAlunosCadastrados extends JPanel {
                 Navegador.mostrar("ALUNOS"));
 
         painel.add(btnCadastrar);
+        painel.add(btnAlterar);
         painel.add(btnVoltar);
 
         return painel;
